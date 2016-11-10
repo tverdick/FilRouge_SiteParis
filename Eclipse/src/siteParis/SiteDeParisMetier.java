@@ -234,6 +234,7 @@ public class SiteDeParisMetier {
 	 */
 	public void crediterJoueur(String nom, String prenom, String pseudo, long sommeEnJetons, String passwordGestionnaire) throws MetierException, JoueurException, JoueurInexistantException {
   
+	
        validitePasswordGestionnaire(passwordGestionnaire);  //Tester la validité du passwordGestionnaire entré en parametre (charactère et nombre)
       
        if (!this.passwordGestionnaire.equals(passwordGestionnaire)) throw new MetierException() ; //test si le passwordGestionnaire rentré est le bon
@@ -241,13 +242,12 @@ public class SiteDeParisMetier {
        validiteNomPrenomJoueur(nom , prenom);
        validitePseudoJoueur(pseudo);
       
-                  
+                 
        int i = joueurs.indexOf(new Joueur(nom,  prenom,  pseudo));
        if (i == -1) throw new JoueurInexistantException() ;  //i=-1 signifie que l'élément n'est pas dans la liste
        long jetons =joueurs.get(i).getNombreJeton();
-       j.setNombreJeton(jetons + sommeEnJetons);
+       joueurs.get(i).setNombreJeton(jetons + sommeEnJetons);
     
-  
 	}
 
 
